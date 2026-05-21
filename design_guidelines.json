@@ -1,0 +1,97 @@
+{
+  "theme": "LIGHT",
+  "archetype": "6 - Vibrant Play (Earthy & Magical E1 Twist)",
+  "global_vibe": "A warm, tactile, Studio Ghibli meets Animal Crossing aesthetic. Not a generic flat tech app. The UI should feel like physical, chunky wooden or clay toys placed on a magical paper-textured world.",
+  "colors": {
+    "background_base": "#FDFBF7",
+    "background_alt": "#FEF3C7",
+    "primary": "#FF7A59",
+    "primary_hover": "#E06548",
+    "secondary": "#34D399",
+    "secondary_hover": "#059669",
+    "text_main": "#1F2937",
+    "text_muted": "#4B5563",
+    "border": "#00000015",
+    "accent_yellow": "#FBBF24"
+  },
+  "typography": {
+    "heading_font": "Nunito",
+    "body_font": "Quicksand",
+    "weights": {
+      "heading": "800",
+      "body": "600",
+      "labels": "700"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl tracking-tight leading-none",
+      "h2": "text-2xl sm:text-3xl tracking-tight",
+      "h3": "text-xl",
+      "body": "text-base sm:text-lg leading-relaxed",
+      "labels": "text-sm uppercase tracking-wider"
+    }
+  },
+  "layout_and_surfaces": {
+    "general_spacing": "Generous spacing. Use p-6 or p-8 for containers. Avoid cramped text.",
+    "surface_style": "Neumorphic 'Clay' - solid bright backgrounds, rounded-3xl, with a hard 1px inner border and a pronounced drop shadow (e.g., shadow-[0_4px_0_rgba(0,0,0,0.1)]) to simulate a chunky physical toy button.",
+    "hud_style": "Floating solid pills with blurred backdrops (backdrop-blur-xl bg-white/70) with 1px white border, keeping the focus on the character."
+  },
+  "components_strategy": {
+    "mic_button": "Massive, screen-centered or prominently docked at bottom. Needs a 'pulsing' animation state when listening. Use primary color #FF7A59.",
+    "progress_bar": "Chunky height (h-6), fully rounded, soft mint green filling with a subtle shine effect inside.",
+    "speech_bubbles": "Should appear dynamically above the character. rounded-2xl with a small tail pointing down. bg-white text-text_main shadow-lg p-4 font-bold text-lg.",
+    "cards": "For Profile and Lessons: bg-white rounded-3xl border-2 border-border p-6 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all."
+  },
+  "motion_and_interaction": {
+    "philosophy": "Everything should feel elastic and alive. Buttons squish when pressed, menus slide in with a bounce.",
+    "framer_motion_spring": "stiffness: 300, damping: 20",
+    "character_animations": "Use CSS floating/bobbing animation on the character image for idle state. Swap images instantly on state change (talking, confused, happy)."
+  },
+  "images": [
+    {
+      "category": "character_neutral",
+      "url": "https://static.prod-images.emergentagent.com/jobs/4cbb8c95-cc7d-4c23-bde9-366f16efbc08/images/8292be1fcb1728737ac4c08636632b6f9f11e7521e49bb3fe1b60ee8781489fd.png",
+      "description": "Character idle state"
+    },
+    {
+      "category": "character_confused",
+      "url": "https://static.prod-images.emergentagent.com/jobs/4cbb8c95-cc7d-4c23-bde9-366f16efbc08/images/3e343a11409287f37b0618b2e1d7ec79e9449b25f5712256d3b3ac245dbcd8b5.png",
+      "description": "Character thinking or when it doesn't understand a word"
+    },
+    {
+      "category": "character_happy",
+      "url": "https://static.prod-images.emergentagent.com/jobs/4cbb8c95-cc7d-4c23-bde9-366f16efbc08/images/40b20f759cebf2145f80b666d268556fa347a366fd6a26f8f8bb1bd226264d3d.png",
+      "description": "Character happy/reward state"
+    },
+    {
+      "category": "background",
+      "url": "https://static.prod-images.emergentagent.com/jobs/4cbb8c95-cc7d-4c23-bde9-366f16efbc08/images/bd70ca6f31dd4f89fce61803c74ba0c67922fde1e696bcf7cb7192cb8e7c3681.png",
+      "description": "Main environment background"
+    }
+  ],
+  "pages": {
+    "onboarding": {
+      "layout": "Centered character presentation. 'Hello, I'm new here!' sequence.",
+      "elements": "Input form (Profile creation: Name, Age, Hobbies). Use Shadcn customized Inputs (chunky, rounded-xl, text-lg)."
+    },
+    "home_pet_screen": {
+      "layout": "Full-screen absolute background image (`magical_forest_bg`). Top: HUD (Vocabulary progress bar, Settings icon). Middle: Character dynamically floating, with speech bubbles for interaction. Bottom: Massive Mic CTA, flanked by 'Lessons' and 'Profile' buttons.",
+      "mechanics": "Vocabulary progress bar fills as user speaks to it. Character swaps images based on state (neutral -> listening -> confused -> happy)."
+    },
+    "lessons_screen": {
+      "layout": "Grid of chunky cards (Math, English, Animals). Clean solid background (`background_base`) to reduce distraction during learning.",
+      "mechanics": "Single primary action per card."
+    },
+    "profile_screen": {
+      "layout": "Simple read-only list of user's stats (Age, Hobbies) so the character 'remembers' them, rendered as chunky clay-style cards."
+    }
+  },
+  "instructions_to_main_agent": [
+    "CRITICAL: Do NOT use Inter or Roboto. Import and apply 'Nunito' for headings and 'Quicksand' for body text via Google Fonts.",
+    "CRITICAL: Implement Shadcn components but override their styles heavily to match the chunky 'Clay' toy aesthetic (rounded-3xl, thick borders, pronounced shadows). Avoid the default sterile Vercel look.",
+    "Ensure all interactive elements have a `data-testid` attribute (e.g., `data-testid=\"mic-button\"`, `data-testid=\"lesson-card\"`).",
+    "Since this is an Expo mobile app concept mapped to a React web stack, ensure the main layout container is strictly mobile-first (e.g. `max-w-md mx-auto h-screen relative overflow-hidden bg-background_base shadow-2xl rounded-[3rem] border-[8px] border-white`) to simulate a phone screen on desktop.",
+    "Use the provided image URLs exclusively for the character and background. Map them to states in a React component (e.g., `characterState === 'happy' ? urls[2] : urls[0]`).",
+    "Do not use generic FontAwesome icons. Use `lucide-react` with high stroke-width (e.g., strokeWidth={2.5}) to look friendly and tactile.",
+    "Use framer-motion or simple CSS keyframes to add a constant gentle vertical 'breathe/bob' animation to the character image."
+  ]
+}
